@@ -200,25 +200,151 @@
 <section id="module-main">
 <span id="app"></span><h2>App<a class="headerlink" href="#module-main" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="dxf-handler">
-<h2>Dxf Handler<a class="headerlink" href="#dxf-handler" title="Permalink to this heading">#</a></h2>
-<span class="target" id="module-DxfHandler"></span><dl class="py class">
+<section id="module-DxfHandler">
+<span id="dxf-handler"></span><h2>Dxf Handler<a class="headerlink" href="#module-DxfHandler" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
 <dt class="sig sig-object py" id="DxfHandler.DxfHandler">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DxfHandler.</span></span><span class="sig-name descname"><span class="pre">DxfHandler</span></span><a class="headerlink" href="#DxfHandler.DxfHandler" title="Permalink to this definition">#</a></dt>
 <dd><p>A class which handles manipulation of DXF files (read and write)</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="DxfHandler.DxfHandler.get_text_as_list">
-<span class="sig-name descname"><span class="pre">get_text_as_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dxf_file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DxfHandler.DxfHandler.get_text_as_list" title="Permalink to this definition">#</a></dt>
-<dd><p>Get all the text within a dxf file</p>
+<dt class="sig sig-object py" id="DxfHandler.DxfHandler.get_all_mtext">
+<span class="sig-name descname"><span class="pre">get_all_mtext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dxf_file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DxfHandler.DxfHandler.get_all_mtext" title="Permalink to this definition">#</a></dt>
+<dd><p>Get all the mtext entities within a dxf file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>dxf_file_path</strong> (<em>string</em>) – The path to the DXF file</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of all text components found</p>
+<dd class="field-even"><p>A group of all mtext components found in modelspace</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of strings</p>
+<dd class="field-odd"><p>exdxf.query.EntityQuery</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DxfHandler.DxfHandler.get_all_mtext_text">
+<span class="sig-name descname"><span class="pre">get_all_mtext_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dxf_file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DxfHandler.DxfHandler.get_all_mtext_text" title="Permalink to this definition">#</a></dt>
+<dd><p>Get all the text attributes of any mtext entities within a dxf file
+(all text including formatting returned)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dxf_file_path</strong> (<em>string</em>) – The path to the DXF file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of all the text found in modelspace</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DxfHandler.DxfHandler.get_text_att">
+<span class="sig-name descname"><span class="pre">get_text_att</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mtext</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DxfHandler.DxfHandler.get_text_att" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the text attribute of a mtext entity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mtext</strong> (<em>ezdxf.entities.mtext.MText</em>) – The mtext entity</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The mtext text contents</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-LabelParser">
+<span id="label-parser"></span><h2>Label Parser<a class="headerlink" href="#module-LabelParser" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="LabelParser.LabelParser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">LabelParser.</span></span><span class="sig-name descname"><span class="pre">LabelParser</span></span><a class="headerlink" href="#LabelParser.LabelParser" title="Permalink to this definition">#</a></dt>
+<dd><p>A class which handles parsing of strings</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="LabelParser.LabelParser.filter_strings_with_pattern">
+<span class="sig-name descname"><span class="pre">filter_strings_with_pattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LabelParser.LabelParser.filter_strings_with_pattern" title="Permalink to this definition">#</a></dt>
+<dd><p>filter strings using regex pattern given</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>string_list</strong> (<em>list</em><em> of </em><em>str</em>) – The text to parse</p></li>
+<li><p><strong>pattern</strong> (<em>list</em><em> of </em><em>str</em>) – The regex pattern to filter with</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of filtered strings that exactly match the pattern</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="LabelParser.LabelParser.get_bars">
+<span class="sig-name descname"><span class="pre">get_bars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LabelParser.LabelParser.get_bars" title="Permalink to this definition">#</a></dt>
+<dd><p>get all bars as dicts (bar_mark, type, size and quantity)</p>
+<p>H bar size only</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>list</em><em> of </em><em>str</em>) – The text to parse</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of bars</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-BarHandler">
+<span id="bar-handler"></span><h2>Bar Handler<a class="headerlink" href="#module-BarHandler" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="BarHandler.BarHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">BarHandler.</span></span><span class="sig-name descname"><span class="pre">BarHandler</span></span><a class="headerlink" href="#BarHandler.BarHandler" title="Permalink to this definition">#</a></dt>
+<dd><p>A class which handles the creation of Bar Dicts</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="BarHandler.BarHandler.get_bar_set">
+<span class="sig-name descname"><span class="pre">get_bar_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BarHandler.BarHandler.get_bar_set" title="Permalink to this definition">#</a></dt>
+<dd><p>return a unique set of bars with the quantities stored as a list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bars</strong> (<em>list</em><em> of </em><em>bar dicts</em>) – The bars list containing duplicate bar marks</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of unique bars with their updated quantities</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bar_set</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BarHandler.BarHandler.sum_quantities">
+<span class="sig-name descname"><span class="pre">sum_quantities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#BarHandler.BarHandler.sum_quantities" title="Permalink to this definition">#</a></dt>
+<dd><p>Sum up each bars’ quantities list into No. of Mbars, No. of bars in each</p>
+<p>i.e [8,8] = 2, 8 or [8,16] = 1, 24</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bars</strong> (<em>list</em><em> of </em><em>unique bars</em>) – The bars list containing quantity list</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of unique bars with ‘number_of_members’ and ‘number_of_bars_in_each’, rather than a list of ‘quantities’</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bar_set_formatted</p>
 </dd>
 </dl>
 </dd></dl>
@@ -285,9 +411,27 @@
             <ul>
 <li><a class="reference internal" href="#">Code Documentation</a><ul>
 <li><a class="reference internal" href="#module-main">App</a></li>
-<li><a class="reference internal" href="#dxf-handler">Dxf Handler</a><ul>
+<li><a class="reference internal" href="#module-DxfHandler">Dxf Handler</a><ul>
 <li><a class="reference internal" href="#DxfHandler.DxfHandler"><code class="docutils literal notranslate"><span class="pre">DxfHandler</span></code></a><ul>
-<li><a class="reference internal" href="#DxfHandler.DxfHandler.get_text_as_list"><code class="docutils literal notranslate"><span class="pre">DxfHandler.get_text_as_list()</span></code></a></li>
+<li><a class="reference internal" href="#DxfHandler.DxfHandler.get_all_mtext"><code class="docutils literal notranslate"><span class="pre">DxfHandler.get_all_mtext()</span></code></a></li>
+<li><a class="reference internal" href="#DxfHandler.DxfHandler.get_all_mtext_text"><code class="docutils literal notranslate"><span class="pre">DxfHandler.get_all_mtext_text()</span></code></a></li>
+<li><a class="reference internal" href="#DxfHandler.DxfHandler.get_text_att"><code class="docutils literal notranslate"><span class="pre">DxfHandler.get_text_att()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-LabelParser">Label Parser</a><ul>
+<li><a class="reference internal" href="#LabelParser.LabelParser"><code class="docutils literal notranslate"><span class="pre">LabelParser</span></code></a><ul>
+<li><a class="reference internal" href="#LabelParser.LabelParser.filter_strings_with_pattern"><code class="docutils literal notranslate"><span class="pre">LabelParser.filter_strings_with_pattern()</span></code></a></li>
+<li><a class="reference internal" href="#LabelParser.LabelParser.get_bars"><code class="docutils literal notranslate"><span class="pre">LabelParser.get_bars()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-BarHandler">Bar Handler</a><ul>
+<li><a class="reference internal" href="#BarHandler.BarHandler"><code class="docutils literal notranslate"><span class="pre">BarHandler</span></code></a><ul>
+<li><a class="reference internal" href="#BarHandler.BarHandler.get_bar_set"><code class="docutils literal notranslate"><span class="pre">BarHandler.get_bar_set()</span></code></a></li>
+<li><a class="reference internal" href="#BarHandler.BarHandler.sum_quantities"><code class="docutils literal notranslate"><span class="pre">BarHandler.sum_quantities()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -7,8 +7,22 @@ class BarHandler:
     """
     def __init__(self):
         pass
-    
+
     def get_bar_set(self, bars):
+        """
+        return a unique set of bars with the quantities stored as a list
+
+        Parameters
+        ----------
+        bars : list of bar dicts
+            The bars list containing duplicate bar marks
+
+        Returns
+        ----------
+        bar_set 
+            A list of unique bars with their updated quantities
+    
+        """
         bar_set = []
         for bar in bars:  
             added = False      
@@ -25,3 +39,23 @@ class BarHandler:
                 }
                 bar_set.append(formatted_bar)    
         return bar_set
+    
+
+    def sum_quantities(bar_set):
+        """
+        Sum up each bars' quantities list into No. of Mbars, No. of bars in each\n
+        i.e [8,8] = 2, 8 or [8,16] = 1, 24
+
+        Parameters
+        ----------
+        bars : list of unique bars
+            The bars list containing quantity list
+
+        Returns
+        ----------
+        bar_set_formatted
+            A list of unique bars with 'number_of_members' and 'number_of_bars_in_each', rather than a list of 'quantities'
+
+        """
+
+        raise NotImplementedError("This function is not implemented yet")
