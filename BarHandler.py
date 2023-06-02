@@ -19,7 +19,7 @@ class BarHandler:
 
         Returns
         ----------
-        bar_set 
+        bar_set (list)
             A list of unique bars with their updated quantities
     
         """
@@ -40,8 +40,30 @@ class BarHandler:
                 bar_set.append(formatted_bar)    
         return bar_set
     
+    def are_elements_equal(self, group : list):
+        """
+        Check if all elements in a list are equal\n
+        i.e [8,8] = True, [8,16] = False
 
-    def sum_quantities(bar_set):
+        Parameters
+        ----------
+        group : list of elements
+            The list to check
+
+        Returns
+        ----------
+        bool
+            A bool stating if all elements in the list are the same
+
+        """
+        element_to_match = group[0]
+        for element in group:
+            if not element_to_match == element:
+                return False            
+        return True
+    
+
+    def sum_quantities(self, bar_set):
         """
         Sum up each bars' quantities list into No. of Mbars, No. of bars in each\n
         i.e [8,8] = 2, 8 or [8,16] = 1, 24
@@ -53,9 +75,21 @@ class BarHandler:
 
         Returns
         ----------
-        bar_set_formatted
-            A list of unique bars with 'number_of_members' and 'number_of_bars_in_each', rather than a list of 'quantities'
+        bar_set_formatted (list)
+            A list of unique bars with 'number_of_members' and 'number_of_bars_in_each' added
 
         """
+        bar_set
+        for bar in bar_set:
+            quantities = bar["quantity"]
+            if self.are_elements_equal(quantities):
+                number_of_members = len(quantities)
+                number_of_bars_in_each = quantities[0]
+            else:
+                number_of_members = 1
+                number_of_bars_in_each = sum(quantities)
 
-        raise NotImplementedError("This function is not implemented yet")
+            bar["number_of_members"] = number_of_members
+            bar["number_of_bars_in_each"] = number_of_bars_in_each
+    
+        return bar_set
