@@ -1,4 +1,4 @@
-
+import copy
 
 class BarHandler:
     """
@@ -63,7 +63,7 @@ class BarHandler:
         return True
     
 
-    def sum_quantities(self, bar_set):
+    def sum_quantities(self, original_bar_set):
         """
         Sum up each bars' quantities list into No. of Mbars, No. of bars in each\n
         i.e [8,8] = 2, 8 or [8,16] = 1, 24
@@ -79,7 +79,7 @@ class BarHandler:
             A list of unique bars with 'number_of_members' and 'number_of_bars_in_each' added
 
         """
-        bar_set
+        bar_set = copy.deepcopy(original_bar_set)
         for bar in bar_set:
             quantities = bar["quantity"]
             if self.are_elements_equal(quantities):

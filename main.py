@@ -12,7 +12,8 @@ if __name__ == "__main__":
     bar_handler = BarHandler()
     bars_unique = bar_handler.get_bar_set(bars) # get unique set of bar marks
     bars_summed = bar_handler.sum_quantities(bars_unique) # get the bbs formatted set
-    print(bars_unique) # need to make deep copy in sum function so this doesn't change 
+    print(bars)
+    print(bars_unique)
     print(bars_summed)
 
 
