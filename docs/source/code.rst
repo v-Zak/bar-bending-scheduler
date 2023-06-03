@@ -31,3 +31,10 @@ Bar Handler
 
 .. automodule:: BarHandler
     :members:  
+
+************************
+Csv Handler
+************************
+
+.. automodule:: CsvHandler
+    :members:  
