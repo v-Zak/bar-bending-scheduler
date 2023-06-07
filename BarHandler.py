@@ -8,7 +8,7 @@ class BarHandler:
     def __init__(self):
         pass
 
-    def get_bar_set(self, bars):
+    def get_bar_set(self, bars : list) -> list:
         """
         return a unique set of bars with the quantities stored as a list
 
@@ -40,7 +40,7 @@ class BarHandler:
                 bar_set.append(formatted_bar)    
         return bar_set
     
-    def are_elements_equal(self, group : list):
+    def are_elements_equal(self, group : list) -> bool:
         """
         Check if all elements in a list are equal\n
         i.e [8,8] = True, [8,16] = False
@@ -63,7 +63,7 @@ class BarHandler:
         return True
     
 
-    def sum_quantities(self, original_bar_set):
+    def sum_quantities(self, original_bar_set : list) -> list:
         """
         Sum up each bars' quantities list into No. of Mbars, No. of bars in each\n
         i.e [8,8] = 2, 8 or [8,16] = 1, 24

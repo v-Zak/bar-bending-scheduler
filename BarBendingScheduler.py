@@ -26,14 +26,20 @@ class BarBendingScheduler:
         try:
             if csv_path == None:            
                 csv_path = dxf_path[0:-4] + '-BBS-output.csv'
-
+            
             print('Reading...')
             dxf_handler = DxfHandler()   
             all_text = dxf_handler.get_all_mtext_text(dxf_path) # get text
 
+            if len(all_text) == 0:
+                raise("No MTEXT variables found in model space")
+
             print('Parsing...')
             label_parser = LabelParser()
             bars = label_parser.get_bars(all_text) # get bars as dicts
+
+            if len(bars) == 0:
+                raise("No Bars found in model space MTEXT")
 
             print('Creating Bars...')
             bar_handler = BarHandler()

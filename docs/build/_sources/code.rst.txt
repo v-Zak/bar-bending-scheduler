@@ -12,6 +12,13 @@ App
     :members:   
 
 ************************
+Bar Bending Scheduler
+************************
+
+.. automodule:: BarBendingScheduler
+    :members:   
+
+************************
 Dxf Handler
 ************************
 

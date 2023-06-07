@@ -8,7 +8,7 @@ class CsvHandler:
     def __init__(self):
         pass
 
-    def dict_list_to_csv(self, list_to_csv, keys = None, csv_file_path = "output.csv"):
+    def dict_list_to_csv(self, list_to_csv : list, keys : list = None, csv_file_path : str = "output.csv") -> None:
         """
         Outputs a list of dicts to a csv file
 
@@ -23,8 +23,8 @@ class CsvHandler:
     
         """
         if keys == None:
+            print("No keys given so saving all")
             keys = list_to_csv[0].keys() # get all keys if none given
-            print(keys)
 
         with open(csv_file_path, 'w', newline='') as output_file: # output to file
             dict_writer = csv.DictWriter(output_file, fieldnames = keys)
@@ -33,7 +33,7 @@ class CsvHandler:
                     dict_writer.writerow({field: row[field] for field in keys})
 
 
-    def csv_to_dict_list(self, csv_file_path):
+    def csv_to_dict_list(self, csv_file_path : str) -> list:
         """
         Reads in a csv file to a list of dicts
 

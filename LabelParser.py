@@ -8,7 +8,7 @@ class LabelParser:
     def __init__(self):
         pass
 
-    def get_bars(self, text):
+    def get_bars(self, text : list) -> list:
         """
         get all bars as dicts (bar_mark, type, size and quantity)\n
         H bar size only
@@ -45,7 +45,7 @@ class LabelParser:
         return bars
         
 
-    def filter_strings_with_pattern(self, string_list, pattern):
+    def filter_strings_with_pattern(self, string_list : str, pattern : str) -> list:
         """
         filter strings using regex pattern given\n
 

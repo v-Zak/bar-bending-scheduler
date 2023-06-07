@@ -27,12 +27,12 @@ class DxfHandler:
         # open the file
         try:
             doc = ezdxf.readfile(dxf_file_path)
-        except IOError:
-            print(f"Not a DXF file or a generic I/O error.")
-            sys.exit(1)
-        except ezdxf.DXFStructureError:
-            print(f"Invalid or corrupted DXF file.")
-            sys.exit(2)
+        except IOError as err:
+            print(f"Not a DXF file or a generic I/O error:")
+            print(dxf_file_path)
+        except ezdxf.DXFStructureError as err:
+            print(f"Invalid or corrupted DXF file:")
+            print(dxf_file_path)
         
         # get all text in modelspace
         model_space = doc.modelspace()
