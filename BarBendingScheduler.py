@@ -2,14 +2,15 @@ from DxfHandler import DxfHandler
 from LabelParser import LabelParser
 from BarHandler import BarHandler
 from CsvHandler import CsvHandler
+from Logger import Logger
 
 class BarBendingScheduler:
     """
     A class which handles the creation of a BBS (CSV) based on a given DXF file
 
     """
-    def __init__(self):
-        pass
+    def __init__(self, logger : Logger):
+        self.logger = logger
     
     def createBarQuantitiesCsv(self, dxf_path, csv_path = None):
         """
@@ -27,27 +28,27 @@ class BarBendingScheduler:
             if csv_path == None:            
                 csv_path = dxf_path[0:-4] + '-BBS-output.csv'
             
-            print('Reading...')
-            dxf_handler = DxfHandler()   
+            self.logger.inputLog('Reading...')
+            dxf_handler = DxfHandler(self.logger)   
             all_text = dxf_handler.get_all_mtext_text(dxf_path) # get text
 
             if len(all_text) == 0:
                 raise("No MTEXT variables found in model space")
 
-            print('Parsing...')
+            self.logger.inputLog('Parsing...')
             label_parser = LabelParser()
             bars = label_parser.get_bars(all_text) # get bars as dicts
 
             if len(bars) == 0:
                 raise("No Bars found in model space MTEXT")
 
-            print('Creating Bars...')
+            self.logger.inputLog('Creating Bars...')
             bar_handler = BarHandler()
             bars_unique = bar_handler.get_bar_set(bars) # get unique set of bar marks
             bars_summed = bar_handler.sum_quantities(bars_unique) # get the bbs formatted set
 
-            print('Exporting...')
-            csv_handler = CsvHandler()
+            self.logger.inputLog('Exporting...')
+            csv_handler = CsvHandler(self.logger)
             csv_handler.dict_list_to_csv(   list_to_csv = bars_summed, 
                                             keys = [   'bar_mark', 'type', 
                                                     'size', 'number_of_members',
@@ -55,7 +56,7 @@ class BarBendingScheduler:
                                                 ],
                                             csv_file_path = csv_path)
 
-            print('Done...')
-            print(f'File saved to: {csv_path}')
-        except ValueError as err:
-            print(err.args)
+            self.logger.inputLog('Done...')
+            self.logger.inputLog(f'File saved to: {csv_path}')
+        except Exception as err:
+            self.logger.inputLog(str(err))

@@ -45,3 +45,10 @@ Csv Handler
 
 .. automodule:: CsvHandler
     :members:  
+
+************************
+Logger
+************************
+
+.. automodule:: Logger
+    :members:  

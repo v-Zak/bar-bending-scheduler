@@ -1,12 +1,13 @@
 import csv
+from Logger import Logger
 
 class CsvHandler:
     """
     A class which handles manipulation of CSV files (read and write)
 
     """
-    def __init__(self):
-        pass
+    def __init__(self, logger : Logger):
+        self.logger = logger
 
     def dict_list_to_csv(self, list_to_csv : list, keys : list = None, csv_file_path : str = "output.csv") -> None:
         """
@@ -23,7 +24,7 @@ class CsvHandler:
     
         """
         if keys == None:
-            print("No keys given so saving all")
+            self.logger.inputLog("No keys given so saving all")
             keys = list_to_csv[0].keys() # get all keys if none given
 
         with open(csv_file_path, 'w', newline='') as output_file: # output to file

@@ -1,4 +1,5 @@
 from BarBendingScheduler import BarBendingScheduler
+from Logger import Logger
 
 import kivy
 kivy.require('2.2.0')
@@ -55,9 +56,11 @@ class RebarReader(App):
         return layout
     
     def create(self, dxf_path):
+        log = Logger()
         dxf_path = self.path.text
-        bbs = BarBendingScheduler()
+        bbs = BarBendingScheduler(logger = log)
         bbs.createBarQuantitiesCsv(dxf_path)
+        self.console.text = log.getAllAsString()
 
 if __name__ == '__main__':
     RebarReader().run()

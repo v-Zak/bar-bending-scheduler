@@ -1,13 +1,14 @@
 import ezdxf
 import sys
+from Logger import Logger
 
 class DxfHandler:
     """
     A class which handles manipulation of DXF files (read and write)
 
     """
-    def __init__(self):
-        pass
+    def __init__(self, logger : Logger):
+        self.logger = logger
 
     def get_all_mtext(self, dxf_file_path):
         """
@@ -28,11 +29,13 @@ class DxfHandler:
         try:
             doc = ezdxf.readfile(dxf_file_path)
         except IOError as err:
-            print(f"Not a DXF file or a generic I/O error:")
-            print(dxf_file_path)
+            self.logger.inputLog(f"Not a DXF file or a generic I/O error:")
+            self.logger.inputLog(dxf_file_path)
+            raise(err)
         except ezdxf.DXFStructureError as err:
-            print(f"Invalid or corrupted DXF file:")
-            print(dxf_file_path)
+            self.logger.inputLog(f"Invalid or corrupted DXF file:")
+            self.logger.inputLog(dxf_file_path)
+            raise(err)
         
         # get all text in modelspace
         model_space = doc.modelspace()
