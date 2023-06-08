@@ -199,17 +199,58 @@
 <a class="reference internal" href="usage.html#installation"><span class="std std-ref">install</span></a> the project.</p>
 <section id="module-main">
 <span id="app"></span><h2>App<a class="headerlink" href="#module-main" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="main.RebarReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">RebarReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.RebarReader" title="Permalink to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="main.RebarReader.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.RebarReader.build" title="Permalink to this definition">#</a></dt>
+<dd><p>Initializes the application; it will be called only once.
+If this method returns a widget (tree), it will be used as the root
+widget and added to the window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None or a root <code class="xref py py-class docutils literal notranslate"><span class="pre">Widget</span></code> instance
+if no self.root exists.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-BarBendingScheduler">
 <span id="bar-bending-scheduler"></span><h2>Bar Bending Scheduler<a class="headerlink" href="#module-BarBendingScheduler" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="BarBendingScheduler.BarBendingScheduler">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">BarBendingScheduler.</span></span><span class="sig-name descname"><span class="pre">BarBendingScheduler</span></span><a class="headerlink" href="#BarBendingScheduler.BarBendingScheduler" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">BarBendingScheduler.</span></span><span class="sig-name descname"><span class="pre">BarBendingScheduler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Logger.Logger" title="Logger.Logger"><span class="pre">Logger</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BarBendingScheduler.BarBendingScheduler" title="Permalink to this definition">#</a></dt>
 <dd><p>A class which handles the creation of a BBS (CSV) based on a given DXF file</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="BarBendingScheduler.BarBendingScheduler.createBarQuantitiesCsv">
 <span class="sig-name descname"><span class="pre">createBarQuantitiesCsv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dxf_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BarBendingScheduler.BarBendingScheduler.createBarQuantitiesCsv" title="Permalink to this definition">#</a></dt>
 <dd><p>creates a BBS in CSV format based on a given DXF file</p>
+<p>if {dxf_path} is within csv_path its replaces with the DXF full path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dxf_path</strong> (<em>string</em>) – The path to the DXF to read</p></li>
+<li><p><strong>csv_path</strong> (<em>string</em>) – The path to save the CSV (default is ‘{dxf_path}-BBS-output.csv’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>csv_path</strong> – Path to saved schedule</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BarBendingScheduler.BarBendingScheduler.getBarQuantitiesCsv">
+<span class="sig-name descname"><span class="pre">getBarQuantitiesCsv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BarBendingScheduler.BarBendingScheduler.getBarQuantitiesCsv" title="Permalink to this definition">#</a></dt>
+<dd><p>reads in a BBS in CSV format</p>
+<p>if {dxf_path} is within csv_path its replaces with the DXF full path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -227,7 +268,7 @@
 <span id="dxf-handler"></span><h2>Dxf Handler<a class="headerlink" href="#module-DxfHandler" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="DxfHandler.DxfHandler">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DxfHandler.</span></span><span class="sig-name descname"><span class="pre">DxfHandler</span></span><a class="headerlink" href="#DxfHandler.DxfHandler" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DxfHandler.</span></span><span class="sig-name descname"><span class="pre">DxfHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Logger.Logger" title="Logger.Logger"><span class="pre">Logger</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DxfHandler.DxfHandler" title="Permalink to this definition">#</a></dt>
 <dd><p>A class which handles manipulation of DXF files (read and write)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="DxfHandler.DxfHandler.get_all_mtext">
@@ -397,7 +438,7 @@
 <span id="csv-handler"></span><h2>Csv Handler<a class="headerlink" href="#module-CsvHandler" title="Permalink to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="CsvHandler.CsvHandler">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CsvHandler.</span></span><span class="sig-name descname"><span class="pre">CsvHandler</span></span><a class="headerlink" href="#CsvHandler.CsvHandler" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CsvHandler.</span></span><span class="sig-name descname"><span class="pre">CsvHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#Logger.Logger" title="Logger.Logger"><span class="pre">Logger</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CsvHandler.CsvHandler" title="Permalink to this definition">#</a></dt>
 <dd><p>A class which handles manipulation of CSV files (read and write)</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="CsvHandler.CsvHandler.csv_to_dict_list">
@@ -429,6 +470,89 @@
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Logger">
+<span id="logger"></span><h2>Logger<a class="headerlink" href="#module-Logger" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Logger.Logger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Logger.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><a class="headerlink" href="#Logger.Logger" title="Permalink to this definition">#</a></dt>
+<dd><p>A class which handles the logging of text information</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Logger.Logger.emptyLog">
+<span class="sig-name descname"><span class="pre">emptyLog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Logger.Logger.emptyLog" title="Permalink to this definition">#</a></dt>
+<dd><p>Empties the log</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Logger.Logger.getAll">
+<span class="sig-name descname"><span class="pre">getAll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Logger.Logger.getAll" title="Permalink to this definition">#</a></dt>
+<dd><p>Outputs the stored log as a list of str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log</strong> – A list of log inputs</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Logger.Logger.getAllAsString">
+<span class="sig-name descname"><span class="pre">getAllAsString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newLine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Logger.Logger.getAllAsString" title="Permalink to this definition">#</a></dt>
+<dd><p>Outputs the stored log as a str with newLine char inbetween</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>newline</strong> (<em>str</em><em>, </em><em>default = 'n'</em>) – The newLine Character to use</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>log</strong> – A concat of all logs</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Logger.Logger.getLast">
+<span class="sig-name descname"><span class="pre">getLast</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#Logger.Logger.getLast" title="Permalink to this definition">#</a></dt>
+<dd><p>Outputs the last log as a str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log</strong> – last log</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Logger.Logger.inputLog">
+<span class="sig-name descname"><span class="pre">inputLog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Logger.Logger.inputLog" title="Permalink to this definition">#</a></dt>
+<dd><p>Stores input string in log</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_string</strong> (<em>str</em>) – A string to log</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Logger.Logger.printAll">
+<span class="sig-name descname"><span class="pre">printAll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Logger.Logger.printAll" title="Permalink to this definition">#</a></dt>
+<dd><p>Prints the whole log</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Logger.Logger.printLast">
+<span class="sig-name descname"><span class="pre">printLast</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Logger.Logger.printLast" title="Permalink to this definition">#</a></dt>
+<dd><p>Prints the last Log</p>
 </dd></dl>
 
 </dd></dl>
@@ -492,10 +616,17 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Code Documentation</a><ul>
-<li><a class="reference internal" href="#module-main">App</a></li>
+<li><a class="reference internal" href="#module-main">App</a><ul>
+<li><a class="reference internal" href="#main.RebarReader"><code class="docutils literal notranslate"><span class="pre">RebarReader</span></code></a><ul>
+<li><a class="reference internal" href="#main.RebarReader.build"><code class="docutils literal notranslate"><span class="pre">RebarReader.build()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-BarBendingScheduler">Bar Bending Scheduler</a><ul>
 <li><a class="reference internal" href="#BarBendingScheduler.BarBendingScheduler"><code class="docutils literal notranslate"><span class="pre">BarBendingScheduler</span></code></a><ul>
 <li><a class="reference internal" href="#BarBendingScheduler.BarBendingScheduler.createBarQuantitiesCsv"><code class="docutils literal notranslate"><span class="pre">BarBendingScheduler.createBarQuantitiesCsv()</span></code></a></li>
+<li><a class="reference internal" href="#BarBendingScheduler.BarBendingScheduler.getBarQuantitiesCsv"><code class="docutils literal notranslate"><span class="pre">BarBendingScheduler.getBarQuantitiesCsv()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -530,6 +661,19 @@
 <li><a class="reference internal" href="#CsvHandler.CsvHandler"><code class="docutils literal notranslate"><span class="pre">CsvHandler</span></code></a><ul>
 <li><a class="reference internal" href="#CsvHandler.CsvHandler.csv_to_dict_list"><code class="docutils literal notranslate"><span class="pre">CsvHandler.csv_to_dict_list()</span></code></a></li>
 <li><a class="reference internal" href="#CsvHandler.CsvHandler.dict_list_to_csv"><code class="docutils literal notranslate"><span class="pre">CsvHandler.dict_list_to_csv()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Logger">Logger</a><ul>
+<li><a class="reference internal" href="#Logger.Logger"><code class="docutils literal notranslate"><span class="pre">Logger</span></code></a><ul>
+<li><a class="reference internal" href="#Logger.Logger.emptyLog"><code class="docutils literal notranslate"><span class="pre">Logger.emptyLog()</span></code></a></li>
+<li><a class="reference internal" href="#Logger.Logger.getAll"><code class="docutils literal notranslate"><span class="pre">Logger.getAll()</span></code></a></li>
+<li><a class="reference internal" href="#Logger.Logger.getAllAsString"><code class="docutils literal notranslate"><span class="pre">Logger.getAllAsString()</span></code></a></li>
+<li><a class="reference internal" href="#Logger.Logger.getLast"><code class="docutils literal notranslate"><span class="pre">Logger.getLast()</span></code></a></li>
+<li><a class="reference internal" href="#Logger.Logger.inputLog"><code class="docutils literal notranslate"><span class="pre">Logger.inputLog()</span></code></a></li>
+<li><a class="reference internal" href="#Logger.Logger.printAll"><code class="docutils literal notranslate"><span class="pre">Logger.printAll()</span></code></a></li>
+<li><a class="reference internal" href="#Logger.Logger.printLast"><code class="docutils literal notranslate"><span class="pre">Logger.printLast()</span></code></a></li>
 </ul>
 </li>
 </ul>
