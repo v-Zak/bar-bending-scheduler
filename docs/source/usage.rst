@@ -43,6 +43,5 @@ To run pytest, ensure you're in the project directory and enter into terminal 'p
 Executable
 ----------
 
-To make an excecutable of the project follow the following tutorial:
-
-https://github.com/CovidCoder/Kivy-App-Package-Windows-Tutorial/blob/master/KivyPackageTut.md
+To make an excecutable of the project run within the app folder:
+python -m PyInstaller RebarReader.spec
