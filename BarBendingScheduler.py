@@ -14,7 +14,8 @@ class BarBendingScheduler:
     
     def createBarQuantitiesCsv(self, dxf_path, csv_path = None):
         """
-        creates a BBS in CSV format based on a given DXF file
+        creates a BBS in CSV format based on a given DXF file\n
+        if {dxf_path} is within csv_path its replaces with the DXF full path
 
         Parameters
         ----------
@@ -27,6 +28,9 @@ class BarBendingScheduler:
         try:
             if csv_path == None:            
                 csv_path = dxf_path[0:-4] + '-BBS-output.csv'
+            else:
+                csv_path = csv_path.replace("{dxf_path}", dxf_path[0:-4])
+            
             
             self.logger.inputLog('Reading...')
             dxf_handler = DxfHandler(self.logger)   

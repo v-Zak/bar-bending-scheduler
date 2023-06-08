@@ -29,8 +29,24 @@ class RebarReader(App):
             text = "tests/dxf_samples/text_test_3.dxf"
             )
         
+        self.save_path_label = Label(
+            text = "CSV Save File Location:",
+            size_hint = (1, None),
+            font_size=15,
+            height = 20
+        )
+
+        self.save_path = TextInput(
+            multiline=False, 
+            readonly=False, halign="right", 
+            font_size=15, 
+            size_hint = (1, None), 
+            height = 50,
+            text = "{dxf_path}-BBS-output.csv"
+            )
+        
         self.create_btn = Button(
-            text="Create", size_hint = (0.5, None), height = 40, pos_hint = ({'x': .25})
+            text="Create BBS", size_hint = (0.5, None), height = 40, pos_hint = ({'x': .25})
             )
         
         self.create_btn.bind(on_press = self.create) 
@@ -50,6 +66,8 @@ class RebarReader(App):
         
         layout.add_widget(self.path_label)
         layout.add_widget(self.path)
+        layout.add_widget(self.save_path_label)
+        layout.add_widget(self.save_path)
         layout.add_widget(self.create_btn)
         layout.add_widget(self.console_label)
         layout.add_widget(self.console)
@@ -57,9 +75,11 @@ class RebarReader(App):
     
     def create(self, dxf_path):
         log = Logger()
-        dxf_path = self.path.text
         bbs = BarBendingScheduler(logger = log)
-        bbs.createBarQuantitiesCsv(dxf_path)
+        
+        dxf_path = self.path.text
+        csv_path = self.save_path.text 
+        bbs.createBarQuantitiesCsv(dxf_path, csv_path)
         self.console.text = log.getAllAsString()
 
 if __name__ == '__main__':
