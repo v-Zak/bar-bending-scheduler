@@ -61,6 +61,12 @@ class RebarReader(App):
         self.console = TextInput(
             multiline=True, readonly=True, halign="right", font_size=15, size_hint = (1, 0.6)
         )
+
+        self.open_btn = Button(
+            text="Open BBS", size_hint = (0.5, None), height = 40, pos_hint = ({'x': .25})
+            )
+        
+        self.open_btn.bind(on_press = self.open) 
         
 
         
@@ -71,16 +77,50 @@ class RebarReader(App):
         layout.add_widget(self.create_btn)
         layout.add_widget(self.console_label)
         layout.add_widget(self.console)
+        layout.add_widget(self.open_btn)
         return layout
     
-    def create(self, dxf_path):
+    def create(self, button):
         log = Logger()
-        bbs = BarBendingScheduler(logger = log)
-        
+        bbs = BarBendingScheduler(logger = log)     
+
         dxf_path = self.path.text
         csv_path = self.save_path.text 
+
         bbs.createBarQuantitiesCsv(dxf_path, csv_path)
         self.console.text = log.getAllAsString()
+
+    def open(self, button):
+        log = Logger()
+        bbs = BarBendingScheduler(logger = log)
+
+        csv_path = self.save_path.text 
+        dxf_path = self.path.text
+        csv_path = csv_path.replace("{dxf_path}", dxf_path[0:-4]) # expand csv_path out
+
+        try:
+            results = bbs.getBarQuantitiesCsv(csv_path)
+            self.console.text = self.prettifyDicts(results)
+        except:
+            self.console.text = log.getAllAsString()
+
+    def prettifyDicts(self, ds):
+        result = ''
+        for d in ds:
+            result = result + self.prettifyDict(d) + '\n'
+        return result 
+
+    def prettifyDict(self, d):
+        result = ''
+        for key, value in d.items():
+            result = result +'\t' * 1 + str(key)
+            if isinstance(value, dict):
+                prettifyDict(value, 1+1)
+            else:
+                result = result + '\t' * (1+1) + str(value)
+        return result
+
+
 
 if __name__ == '__main__':
     RebarReader().run()

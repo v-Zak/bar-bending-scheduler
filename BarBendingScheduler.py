@@ -23,6 +23,11 @@ class BarBendingScheduler:
             The path to the DXF to read
         csv_path : string
             The path to save the CSV (default is '{dxf_path}-BBS-output.csv')
+
+        Returns
+        ----------
+        csv_path : str
+            Path to saved schedule
     
         """
         try:
@@ -62,5 +67,30 @@ class BarBendingScheduler:
 
             self.logger.inputLog('Done...')
             self.logger.inputLog(f'File saved to: {csv_path}')
+
+            return csv_path
+        except Exception as err:
+            self.logger.inputLog(err)
+
+    def getBarQuantitiesCsv(self, csv_path = None):
+        """
+        reads in a BBS in CSV format\n
+        if {dxf_path} is within csv_path its replaces with the DXF full path
+
+        Parameters
+        ----------
+        dxf_path : string
+            The path to the DXF to read
+        csv_path : string
+            The path to save the CSV (default is '{dxf_path}-BBS-output.csv')
+    
+        """
+        try:                        
+            self.logger.inputLog('Reading...')
+            csv_handler = CsvHandler(self.logger)
+            result = csv_handler.csv_to_dict_list(csv_path)   
+            #self.logger.inputLog(result) saves results to log 
+            return result  
+            
         except Exception as err:
             self.logger.inputLog(str(err))

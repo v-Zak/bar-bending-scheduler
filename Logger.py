@@ -15,7 +15,7 @@ class Logger:
             A string to log
     
         """
-        self.log.append(input_string)
+        self.log.append(str(input_string))
     
     def emptyLog(self):
         """
