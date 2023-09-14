@@ -2,8 +2,8 @@
 # add these directories to sys.path here.
 import pathlib
 import sys
-sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
-sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix() + "/tests")
+sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix() + "/app")
+sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix() + "/app/tests")
 
 # Configuration file for the Sphinx documentation builder.
 #
